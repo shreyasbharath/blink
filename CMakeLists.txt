@@ -29,15 +29,6 @@ file( GLOB UNIT_TESTS RELATIVE ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/tests
 
 add_library( Production STATIC ${SOURCES} )
 
-#function(run_unit_test testexecutable, testresultfile)
-#  execute_process( COMMAND ${TEST} TIMEOUT 10 RESULT_VARIABLE RESULT_CODE OUTPUT_VARIABLE RESULT_OUTPUT ERROR_VARIABLE RESULT_OUTPUT )
-#  message( STATUS "${RESULT_OUTPUT}" )
-#  if ( RESULT_CODE EQUAL 0 )
-#    #file( REMOVE ${TEST} )
-#    file( WRITE ${RESULT_FILE} ${RESULT_OUTPUT} )
-#  endif()
-#endfunction(run_unit_test)
-
 foreach( testsourcefile ${UNIT_TESTS} )
   get_filename_component( testexecutable "${testsourcefile}" NAME_WE )
   add_executable( ${testexecutable} ${testsourcefile} )
@@ -46,7 +37,7 @@ foreach( testsourcefile ${UNIT_TESTS} )
 #  add_custom_command( TARGET ${testexecutable} POST_BUILD COMMAND ${testexecutable} )
   add_custom_command( TARGET ${testexecutable}
                       POST_BUILD
-                      COMMAND ${CMAKE_COMMAND} -DTEST=$<TARGET_FILE:${testexecutable}> -DRESULT_FILE="$<TARGET_FILE:${testexecutable}>.out" -P ${CMAKE_SOURCE_DIR}/unittest.cmake )
+                      COMMAND ${CMAKE_COMMAND} -DTEST=$<TARGET_FILE:${testexecutable}> -DARGS="--gtest-color=yes --gtest-shuffle" -DRESULT_FILE="$<TARGET_FILE:${testexecutable}>.out" -P ${CMAKE_SOURCE_DIR}/unittest.cmake )
 #  add_custom_target( "${testexecutable}.out" DEPENDS ${testexecutable} )
 #  add_custom_command( TARGET "${testexecutable}.out"
 #                      POST_BUILD
