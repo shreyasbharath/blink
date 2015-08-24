@@ -37,7 +37,7 @@ foreach( testsourcefile ${UNIT_TESTS} )
 #  add_custom_command( TARGET ${testexecutable} POST_BUILD COMMAND ${testexecutable} )
   add_custom_command( TARGET ${testexecutable}
                       POST_BUILD
-                      COMMAND ${CMAKE_COMMAND} -DTEST=$<TARGET_FILE:${testexecutable}> -DARGS="--gtest-color=yes --gtest-shuffle" -DRESULT_FILE="$<TARGET_FILE:${testexecutable}>.out" -P ${CMAKE_SOURCE_DIR}/unittest.cmake )
+                    COMMAND ${CMAKE_COMMAND} -DTEST=$<TARGET_FILE:${testexecutable}> -DARGS=" --gtest_shuffle --gtest_color=yes" -DRESULT_FILE="$<TARGET_FILE:${testexecutable}>.out" -P ${CMAKE_SOURCE_DIR}/unittest.cmake )
 #  add_custom_target( "${testexecutable}.out" DEPENDS ${testexecutable} )
 #  add_custom_command( TARGET "${testexecutable}.out"
 #                      POST_BUILD

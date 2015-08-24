@@ -44,19 +44,18 @@ TEST_F(UnitConversionTest, CelsiusToFahrenheit3) {
 int main(int argc, char **argv) {
   // The following line must be executed to initialise Google Mock
   // (and Google Test) before running the tests.
-  ::testing::InitGoogleMock( &argc, argv );
+  ::testing::InitGoogleMock(&argc, argv);
 
   int exitCode = -1;
   try {
-      exitCode = RUN_ALL_TESTS( );
-  }
-  catch ( const std::exception &e ) {
-      std::cerr << e.what() << std::endl;
+    exitCode = RUN_ALL_TESTS();
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
   }
 
-  fclose( stdin );
-  fclose( stdout );
-  fclose( stderr );
+  fclose(stdin);
+  fclose(stdout);
+  fclose(stderr);
 
   return exitCode;
 }
