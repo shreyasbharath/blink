@@ -8,5 +8,15 @@ The main focus of Blink is as below -
   - Support TDD workflow
   - Automate the boring stuff
 
+For installation -
+
+```
+sudo apt-get cmake
+sudo apt-get ninja-build
+```
+
 To run, navigate to root of project and run the below command -
+
+```
 cmake -Bbuild -H. -G "Ninja" && ninja -C build all -v
+```
