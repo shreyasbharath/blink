@@ -18,7 +18,7 @@ link_directories(lib)
 
 add_compile_options(-g -O0 -Weffc++ -std=gnu++14 -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-local-typedefs -Wno-unused-parameter -Wno-deprecated-declarations -Wshadow -fno-omit-frame-pointer -Woverloaded-virtual -Wcast-align)
 
-set (CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} " -Wl,-static -static-libgcc -m32")
+set (CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} " -Wl,-static -static-libgcc")
 
 file( GLOB SOURCES RELATIVE ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/source/*.cpp )
 file( GLOB HEADERS RELATIVE ${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/source/*.h )

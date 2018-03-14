@@ -1,0 +1,26 @@
+root = .
+builddir = obj
+cxx = g++
+ar = ar
+cflags = -g -O0 -Weffc++ -std=gnu++17 -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-local-typedefs -Wno-unused-parameter -Wno-deprecated-declarations -Wshadow -fno-omit-frame-pointer -Woverloaded-virtual -Wcast-align
+ldflags = -L$builddir
+
+rule cxx
+  command = $cxx -MMD -MT $out -MF $out.d $cflags -c $in -o $out
+  description = CXX $out
+  depfile = $out.d
+  deps = gcc
+
+rule ar
+  command = rm -f $out && $ar crs $out $in
+  description = AR $out
+
+rule link
+  command = $cxx $ldflags -o $out $in $libs
+  description = LINK $out
+
+build $builddir/UnitConversion.o: cxx $root/source/UnitConversion.cpp
+
+build ninja: link $builddir/ninja.o | $builddir/libninja.a
+  libs = -lninja
+
